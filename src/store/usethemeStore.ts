@@ -11,7 +11,7 @@ export const authenticationStore = defineStore('authenticationStore',{
     },
 
     actions:{
-        async authenication(email:string,password:string){
+        async authentication(email:string, password:string){
 
             const {data,error} = await supabase.auth.signInWithPassword({
                 email:`${email}`,
