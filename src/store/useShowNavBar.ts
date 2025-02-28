@@ -15,6 +15,9 @@ export const useShowNavBar = defineStore('useShowNavBar',{
     actions:{
        changeNavBarStatus(){
            this.showNavBar = !this.showNavBar
+       },
+       changeSidebarStatus(){
+           this.showSidebar = !this.showSidebar
        }
     }
 })

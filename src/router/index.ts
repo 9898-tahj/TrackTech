@@ -1,4 +1,5 @@
 import { createWebHistory, createRouter, type RouteRecordRaw  } from 'vue-router'
+import {useShowNavBar} from "../store/useShowNavBar"
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -32,5 +33,24 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({history:createWebHistory(),routes})
+
+router.beforeEach((to,_from, next) => {
+
+    const store = useShowNavBar();
+
+    if(to.path === "/") {
+        if(store.getShowNavBar === false){
+            store.changeNavBarStatus()
+            store.changeSidebarStatus()
+        }
+        next()
+    }else{
+       if(store.getShowNavBar === true){
+           store.changeNavBarStatus()
+           store.changeSidebarStatus()
+       }
+       next()
+    }
+})
 
 export default router
