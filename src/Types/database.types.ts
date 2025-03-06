@@ -126,8 +126,7 @@ export type Database = {
                     active: boolean
                     alert_frequency: string
                     alert_settings: Json
-                    center_lat: number
-                    center_lng: number
+                    central_location: unknown
                     created_at: string
                     geofence_id: string
                     name: string
@@ -138,8 +137,7 @@ export type Database = {
                     active?: boolean
                     alert_frequency: string
                     alert_settings: Json
-                    center_lat: number
-                    center_lng: number
+                    central_location: unknown
                     created_at?: string
                     geofence_id?: string
                     name: string
@@ -150,8 +148,7 @@ export type Database = {
                     active?: boolean
                     alert_frequency?: string
                     alert_settings?: Json
-                    center_lat?: number
-                    center_lng?: number
+                    central_location?: unknown
                     created_at?: string
                     geofence_id?: string
                     name?: string
@@ -174,9 +171,8 @@ export type Database = {
                     asset_type: string | null
                     battery_level: number
                     created_at: string
-                    latitude: number
+                    location: unknown
                     location_id: string
-                    longitude: number
                     speed: number
                 }
                 Insert: {
@@ -184,9 +180,8 @@ export type Database = {
                     asset_type?: string | null
                     battery_level: number
                     created_at?: string
-                    latitude: number
+                    location: unknown
                     location_id?: string
-                    longitude: number
                     speed: number
                 }
                 Update: {
@@ -194,9 +189,8 @@ export type Database = {
                     asset_type?: string | null
                     battery_level?: number
                     created_at?: string
-                    latitude?: number
+                    location?: unknown
                     location_id?: string
-                    longitude?: number
                     speed?: number
                 }
                 Relationships: [
