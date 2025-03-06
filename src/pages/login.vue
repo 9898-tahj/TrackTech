@@ -19,6 +19,8 @@ const authStore = authenticationStore()
       authStore.authentication(username.value, password.value)
     }
   }
+
+  function SignUpInWithGoogle() { authStore.googleOAuthSignUp() }
 </script>
 
 <template>
@@ -51,6 +53,17 @@ const authStore = authenticationStore()
             class="w-full p-2 rounded-md flex flex-col space-y-6"
             :class="getDarkModeStatus() ? 'bg-innerDark' : 'bg-white '"
         >
+          <div class="flex justify-center items-center w-full p-2">
+            <button
+                @click="SignUpInWithGoogle()"
+                class="flex justify-center items-center space-x-2 font-medium border-2 p-1.5 rounded-xl cursor-pointer border-t-[#fbbc05] border-b-[#ea4335] border-r-[#673ab7] border-l-[#4285f4] "
+                :class="getDarkModeStatus() ? 'bg-Dark' : 'bg-[#fafafa]'"
+            >
+              <img width="32" height="32" src="https://img.icons8.com/fluency/48/google-logo.png" alt="google-logo"/>
+              <h1 class="text-[#34a853]">SignIn With Google</h1>
+            </button>
+          </div>
+
             <div class="flex flex-col space-y-1 w-full">
               <label for="username">
                 Email Address
@@ -59,6 +72,8 @@ const authStore = authenticationStore()
                   id="username"
                   v-model="username"
                   class="w-full p-1 rounded-md border-2 outline-none transition-all ease-in-out duration-500"
+                  :class="getDarkModeStatus() ? 'bg-Dark border-teal-900 focus:border-green-500'
+                  : 'bg-teal-50 border-teal-100 focus:border-indigo-500'"
                   type="text"
               >
             </div>
@@ -71,8 +86,26 @@ const authStore = authenticationStore()
                 id="username"
                 v-model="password"
                 class="w-full p-1 rounded-md border-2 outline-none transition-all ease-in-out duration-500"
+                :class="getDarkModeStatus() ? 'bg-Dark border-teal-900 focus:border-green-500'
+                :'bg-teal-50 border-teal-100 focus:border-indigo-500'"
                 type="password"
             >
+          </div>
+
+          <div class="flex justify-between items-center w-full px-2">
+            <a
+                href="#"
+                class="font-medium text-indigo-500"
+            >
+              Forget Password
+            </a>
+
+            <router-link
+                to="/SignUp"
+                class="font-medium text-green-500"
+            >
+              <h2>Don't have an account?</h2>
+            </router-link>
           </div>
         </div>
 
@@ -84,6 +117,8 @@ const authStore = authenticationStore()
             Login
           </button>
         </div>
+
+
 
       </div>
     </div>

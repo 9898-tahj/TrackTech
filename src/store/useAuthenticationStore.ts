@@ -1,15 +1,16 @@
 import {defineStore} from 'pinia'
 import {useAlertStore} from './useAlertStore'
 import {supabase} from "../lib/supabaseClient.ts";
+import type {UserMetaData} from "../Types/database.types.ts"
 import router from "../router";
 
 export const authenticationStore = defineStore('authenticationStore',{
     state:()=>({
-        user:{}
+        user:{} as UserMetaData
     }),
 
     getters:{
-        getUser: (state) => state.user
+       getUser: (state) => state.user
     },
 
     actions:{
@@ -17,7 +18,7 @@ export const authenticationStore = defineStore('authenticationStore',{
 
             const alert = useAlertStore()
 
-            const {data,error} = await supabase.auth.signInWithPassword({
+            const {error} = await supabase.auth.signInWithPassword({
                 email:`${email}`,
                 password:`${password}`
             })
@@ -26,7 +27,6 @@ export const authenticationStore = defineStore('authenticationStore',{
                 alert.changeError(error.message)
                 setTimeout(()=>{alert.changeError("")},3500)
             }else{
-                this.user = data
                 await router.push('/dashboard')
             }
 
@@ -47,33 +47,35 @@ export const authenticationStore = defineStore('authenticationStore',{
             }
 
             if(data){
-                // const { error } = await supabase.from('user_table')
-                // .insert( {
-                //     user_id: `${data.user.id}`,
-                //     first_name:`${first_name}`,
-                //     last_name:`${lastname}`,
-                //     email:`${email}`
-                // })
-                //
-                // if(error){
-                //     alert.changeError(error.message)
-                //     setTimeout(()=>{alert.changeError("")},3500)
-                // }
-                //
-                // if(data){
-                //     this.user = data
-                // }
-                await router.push('/dashboard')
+                alert.changeSuccessStatus("Please verify your account by checking your email.")
+                setTimeout(()=>{alert.changeSuccessStatus("")},4500)
             }
 
         },
 
+        async googleOAuthSignUp(){
+            const alert = useAlertStore()
+
+           try {
+
+              await  supabase.auth.signInWithOAuth({
+                   provider: 'google',
+                   options:{ redirectTo: `${import.meta.env.VITE_REDIRECT_TO}`}
+              })
+
+
+           }catch (error:any){
+               alert.changeError(error.message)
+               setTimeout(()=>{alert.changeError("")},3500)
+           }
+        },
+
         async GetUser(){
 
-            const { data: { user } } = await supabase.auth.getUser()
+            const { data: { session } } = await supabase.auth.getSession()
 
-            if(user){
-                this.user = user
+            if(session){
+                this.user = session.user.user_metadata
             }
         },
 

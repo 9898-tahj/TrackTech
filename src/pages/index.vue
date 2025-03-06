@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {getDarkModeStatus} from '../composables/themeComposable'
+import navigationBar from '../components/navigationBar.vue';
 </script>
 
 <template>
@@ -7,6 +8,7 @@ import {getDarkModeStatus} from '../composables/themeComposable'
         class="min-h-svh w-full flex flex-col space-y-2 "
         :class="getDarkModeStatus() ? 'bg-innerDark text-white':'bg-green-50'"
     >
+      <navigationBar/>
 
       <div
           class="p-1 flex lg:flex-row flex-col lg:space-y-0  lg:space-x-1 space-x-0 space-y-4 justify-center items-center"

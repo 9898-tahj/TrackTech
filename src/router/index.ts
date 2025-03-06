@@ -38,19 +38,28 @@ router.beforeEach((to,_from, next) => {
 
     const store = useShowNavBar();
 
-    if(to.path === "/") {
-        if(store.getShowNavBar === false){
-            store.changeNavBarStatus()
-            store.changeSidebarStatus()
-        }
-        next()
-    }else{
+    if(to.path === "/" || to.path === "/SignUp" || to.path === "/login"){
        if(store.getShowNavBar === true){
            store.changeNavBarStatus()
-           store.changeSidebarStatus()
        }
        next()
+    }else{
+        next()
     }
+
+    // if(to.path === "/") {
+    //     if(store.getShowNavBar === false){
+    //         store.changeNavBarStatus()
+    //         store.changeSidebarStatus()
+    //     }
+    //     next()
+    // }else{
+    //    if(store.getShowNavBar === true){
+    //        store.changeNavBarStatus()
+    //        store.changeSidebarStatus()
+    //    }
+    //    next()
+    // }
 })
 
 export default router
