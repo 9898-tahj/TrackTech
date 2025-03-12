@@ -8,13 +8,15 @@ import { getDarkModeStatus } from '../composables/themeComposable'
 const coordinates = ref(jamaica_location);
 const mapRef = useMap();
 
-watchEffect(async () => {
+watchEffect( () => {
   if (!mapRef.isLoaded || !mapRef.map) return;
 
-  const location = await getLocation();
+  const location =  getLocation();
   if (location !== jamaica_location) {
     coordinates.value = location;
     mapRef.map.flyTo({ center: location, zoom: 14 });
+  }else{
+    mapRef.map.flyTo({ center: getLocation(), zoom: 7 });
   }
 })
 </script>

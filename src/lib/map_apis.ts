@@ -1,4 +1,4 @@
-import type { LngLatLike } from "maplibre-gl";
+// import type { LngLatLike } from "maplibre-gl";
 import { jamaica_location } from "./constants";
 
 export interface LocationResponse {
@@ -18,11 +18,12 @@ export interface LocationResponse {
     query: string;
 }
 
-export async function getLocation() {
-    try {
-        const response = await fetch("http://ip-api.com/json/");
-        const json = (await response.json() as LocationResponse);
-        return [json.lon, json.lat] as LngLatLike;
-    } catch { }
+export function getLocation() {
+    // try {
+    //     const response = await fetch("http://ip-api.com/json/");
+    //     const json = (await response.json() as LocationResponse);
+    //     console.info(json.lon, json.lat)
+    //     return [json.lon, json.lat] as LngLatLike;
+    // } catch { }
     return jamaica_location;
 }
