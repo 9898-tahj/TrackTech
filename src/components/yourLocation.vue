@@ -3,6 +3,7 @@ import { useMap, MglScaleControl,  MglFullscreenControl, MglMarker,  MglGeolocat
 import { jamaica_location } from '../lib/constants';
 import { ref, watchEffect } from 'vue';
 import { getLocation } from '../lib/map_apis';
+import type { LngLatLike } from "maplibre-gl";
 //import { getDarkModeStatus } from '../composables/themeComposable'
 
 const coordinates = ref(jamaica_location);
@@ -15,8 +16,11 @@ watchEffect(  async () => {
   if (location !== jamaica_location) {
     coordinates.value = location;
     mapRef.map.flyTo({ center: location, zoom: 15 });
+  }else{
+    mapRef.map.flyTo({ center: location, zoom: 15 });
   }
 })
+
 </script>
 
 <template>
