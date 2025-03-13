@@ -28,7 +28,7 @@ export  async function getLocation() {
         return [json.lon, json.lat] as LngLatLike;
 
     } catch(error) {
-        alert(error);
+        //alert(error);
+        return jamaica_location;
     }
-    return jamaica_location;
 }
