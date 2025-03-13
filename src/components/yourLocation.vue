@@ -1,33 +1,27 @@
 <script setup lang="ts">
-import { useMap,  MglPopup } from '@indoorequal/vue-maplibre-gl';
+import { useMap, MglScaleControl,  MglFullscreenControl, MglMarker,  MglGeolocateControl } from '@indoorequal/vue-maplibre-gl';
 import { jamaica_location } from '../lib/constants';
 import { ref, watchEffect } from 'vue';
 import { getLocation } from '../lib/map_apis';
-import { getDarkModeStatus } from '../composables/themeComposable'
+//import { getDarkModeStatus } from '../composables/themeComposable'
 
 const coordinates = ref(jamaica_location);
 const mapRef = useMap();
 
-watchEffect( () => {
+watchEffect(  async () => {
   if (!mapRef.isLoaded || !mapRef.map) return;
 
-  const location =  getLocation();
+  const location =  await getLocation();
   if (location !== jamaica_location) {
     coordinates.value = location;
-    mapRef.map.flyTo({ center: location, zoom: 14 });
-  }else{
-    mapRef.map.flyTo({ center: getLocation(), zoom: 7 });
+    mapRef.map.flyTo({ center: location, zoom: 15 });
   }
 })
 </script>
+
 <template>
-  <mgl-popup v-if="mapRef.isLoaded" :close-on-click="false" :coordinates="coordinates">
-    <div
-        class="flex flex-col space-y-4 justify-center items-center font-semibold text-xl"
-        :class="getDarkModeStatus() ? 'text-teal-700'
-        :'text-indigo-500'"
-    >
-      <h3>Approximate Location.</h3>
-    </div>
-  </mgl-popup>
+  <mgl-marker :coordinates="coordinates" color="#615efe" />
+  <mgl-fullscreen-control/>
+  <mgl-scale-control/>
+  <mgl-geolocate-control/>
 </template>
