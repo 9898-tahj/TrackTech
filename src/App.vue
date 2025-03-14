@@ -7,6 +7,7 @@ import {getDarkModeStatus} from "./composables/themeComposable.ts"
 import alertComponent from './components/alert.vue'
 import errorComponent from './components/error.vue'
 import successModal from "./components/successModal.vue";
+import addDeviceComponent from "./components/addDeviceComponent.vue";
 
   const store = useShowNavBar()
   let showNavbar = computed<boolean>(() => {return store.getShowNavBar })
@@ -31,6 +32,7 @@ import successModal from "./components/successModal.vue";
     <alertComponent/>
     <errorComponent/>
     <successModal/>
+    <addDeviceComponent/>
   </section>
 </template>
 

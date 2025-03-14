@@ -5,4 +5,6 @@
     --font-poppins:"Poppins", sans-serif;
     --color-Dark: #202124;
     --color-innerDark: #191919;
+    --shadow-3xl: #615efe -4px 4px;
+    --shadow-4xl: #00c950 -4px 4px;
 }

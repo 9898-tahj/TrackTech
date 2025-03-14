@@ -3,7 +3,6 @@ import { useMap, MglScaleControl,  MglFullscreenControl, MglMarker,  MglGeolocat
 import { jamaica_location } from '../lib/constants';
 import { ref, watchEffect } from 'vue';
 import { getLocation } from '../lib/map_apis';
-import type { LngLatLike } from "maplibre-gl";
 //import { getDarkModeStatus } from '../composables/themeComposable'
 
 const coordinates = ref(jamaica_location);
