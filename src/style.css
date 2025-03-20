@@ -7,4 +7,6 @@
     --color-innerDark: #191919;
     --shadow-3xl: #615efe -4px 4px;
     --shadow-4xl: #00c950 -4px 4px;
+    --shadow-5xl: #00c950 4px -4px;
+    --shadow-6xl: #615efe 4px -4px;
 }
