@@ -54,7 +54,11 @@ function prevSlide(){
       class="p-1 flex lg:flex-row flex-col lg:space-y-0 lg:space-x-1 space-x-0 space-y-4 justify-center items-center"
     >
 
-      <div class="lg:h-[75vh] lg:w-1/2 flex flex-col space-y-0.5 justify-center items-center">
+      <div
+          class="lg:h-[75vh] lg:w-full flex flex-col space-y-0.5 justify-center items-center bg-cover rounded-md"
+          :class="getDarkModeStatus() ? 'bg-[url(https://images.unsplash.com/photo-1584931423298-c576fda54bd2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]'
+          :'bg-[url(https://images.unsplash.com/photo-1476973422084-e0fa66ff9456?q=80&w=2041&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]' "
+      >
 
         <!-- Welcome Container -->
         <h1 class="font-medium lg:text-6xl text-4xl">
@@ -65,15 +69,15 @@ function prevSlide(){
       </div>
 
       <!-- Video Section -->
-      <div class="flex w-1/2">
-        <video
-          autoplay muted loop
-          class="lg:h-[75vh] object-cover lg:w-full rounded-3xl border-2"
-          :class="getDarkModeStatus() ? 'border-teal-950' : 'border-teal-50'"
-        >
-          <source src="/9795083-hd_1366_720_25fps.mp4" type="video/mp4" />
-        </video>
-      </div>
+<!--      <div class="flex w-1/2">-->
+<!--        <video-->
+<!--          autoplay muted loop-->
+<!--          class="lg:h-[75vh] object-cover lg:w-full rounded-3xl border-2"-->
+<!--          :class="getDarkModeStatus() ? 'border-teal-950' : 'border-teal-50'"-->
+<!--        >-->
+<!--          <source src="/9795083-hd_1366_720_25fps.mp4" type="video/mp4" />-->
+<!--        </video>-->
+<!--      </div>-->
 
     </div>
 
