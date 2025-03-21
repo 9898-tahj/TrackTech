@@ -52,6 +52,26 @@ function closeModal(){ alertStore.changeAddDeviceModalStatus()  }
 
             </button>
           </div>
+
+          <div
+              class="flex flex-col space-y-4 p-4 border-dashed"
+              :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
+          >
+              <div>
+                <label>
+
+                </label>
+                <input>
+              </div>
+
+              <div>
+                <label>
+
+                </label>
+                <input>
+              </div>
+          </div>
+
       </section>
     </div>
   </transition>

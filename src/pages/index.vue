@@ -68,16 +68,6 @@ function prevSlide(){
 
       </div>
 
-      <!-- Video Section -->
-<!--      <div class="flex w-1/2">-->
-<!--        <video-->
-<!--          autoplay muted loop-->
-<!--          class="lg:h-[75vh] object-cover lg:w-full rounded-3xl border-2"-->
-<!--          :class="getDarkModeStatus() ? 'border-teal-950' : 'border-teal-50'"-->
-<!--        >-->
-<!--          <source src="/9795083-hd_1366_720_25fps.mp4" type="video/mp4" />-->
-<!--        </video>-->
-<!--      </div>-->
 
     </div>
 
