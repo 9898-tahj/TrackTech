@@ -39,7 +39,7 @@ function closeModal(){ alertStore.changeAddDeviceModalStatus()  }
               :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
           >
             <h1>
-              Add New Device
+              Add Vehicle
             </h1>
 
             <button

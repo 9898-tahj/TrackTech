@@ -9,7 +9,7 @@
   <section class="flex w-full min-h-screen py-2 space-x-1 ">
 
     <div
-        class="flex flex-col space-y-2 w-full min-h-[92] rounded-md border-2 border-dashed p-2"
+        class="flex flex-col space-y-2 w-full min-h-[92vh] rounded-md border-2 border-dashed p-2"
         :class="getDarkModeStatus() ? 'bg-Dark border-teal-950 text-teal-400'
         :'bg-white border-teal-100'"
     >
@@ -37,18 +37,21 @@
           :'bg-gray-100'"
       >
          <button
-             class="flex flex-col justify-center items-center w-24  border-2 rounded-md p-2 text-sm font-medium"
+             class="flex flex-col justify-center items-center w-24  border-2 rounded-md p-2 text-sm font-medium cursor-pointer"
              :class="getDarkModeStatus() ? 'bg-Dark border-teal-950 text-teal-400':'bg-white border-teal-100'"
          >
+
            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 mb-2">
-             <path d="M10.5 18a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 0-1.5h-3Z" />
-             <path fill-rule="evenodd" d="M7.125 1.5A3.375 3.375 0 0 0 3.75 4.875v14.25A3.375 3.375 0 0 0 7.125 22.5h9.75a3.375 3.375 0 0 0 3.375-3.375V4.875A3.375 3.375 0 0 0 16.875 1.5h-9.75ZM6 4.875c0-.621.504-1.125 1.125-1.125h9.75c.621 0 1.125.504 1.125 1.125v14.25c0 .621-.504 1.125-1.125 1.125h-9.75A1.125 1.125 0 0 1 6 19.125V4.875Z" clip-rule="evenodd" />
+             <path d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a.75.75 0 0 0 .75-.75V15Z" />
+             <path d="M8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v11.25c0 .087.015.17.042.248a3 3 0 0 1 5.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 0 0-3.732-10.104 1.837 1.837 0 0 0-1.47-.725H15.75Z" />
+             <path d="M19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
            </svg>
-           View All Devices
+
+           Location history
          </button>
 
         <button
-            class="flex flex-col justify-center items-center w-24  border-2 rounded-md p-2 text-sm font-medium"
+            class="flex flex-col justify-center items-center w-24  border-2 rounded-md p-2 text-sm font-medium cursor-pointer"
             :class="getDarkModeStatus() ? 'bg-Dark border-teal-950 text-teal-400':'bg-white border-teal-100'"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 mb-2">
@@ -57,6 +60,7 @@
 
           Local Device
         </button>
+
 
 
       </div>
