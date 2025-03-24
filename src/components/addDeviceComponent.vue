@@ -48,7 +48,7 @@ function save_vehicle(){
   }else{
     values.status = "true"
     store.add_vehicle(values)
-    console.log ("vehicle information is added.")
+    values = { vehicle_type:""} as _vehicle_insert
   }
 }
 </script>

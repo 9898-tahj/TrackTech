@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
-//import {computed} from "vue";
+import {computed} from "vue";
 import type { Database } from '../Types/database.types'
 import {supabase} from "../lib/supabaseClient";
 import {useAlertStore} from "./useAlertStore";
-//import {authenticationStore} from '../store/useAuthenticationStore'
+import {authenticationStore} from './useAuthenticationStore.ts'
 
 type _Vehicle = Database["public"]['Tables']['vehicle']['Row'][]
 type _vehicle = Database["public"]['Tables']['vehicle']['Row']
@@ -58,20 +58,21 @@ export const useVehicleStore = defineStore("useVehicleStore",{
         async add_vehicle(vehicle:_vehicle_insert){
 
             const alert = useAlertStore()
-            //const auth = authenticationStore()
+            const auth = authenticationStore()
 
-           // let user = computed(()=>{ return auth.getUser })
+            await auth.get_current_user();
+            let user = computed(()=>{ return auth.get_user_id })
 
-            const {data, error} = await supabase.from('vehicle').insert(vehicle)
+            vehicle.user_id = `${user.value}`
 
-            if(data != null){
-                alert.changeSuccessStatus("Vehicle added successfully.")
-                setTimeout(()=>{alert.changeSuccessStatus("")},3500)
-            }
+            const { error} = await supabase.from('vehicle').insert(vehicle)
 
             if(error){
                 alert.changeError(error.message)
                 setTimeout(()=>{alert.changeError("")},5000)
+            }else{
+                alert.changeSuccessStatus("Vehicle added successfully.")
+                setTimeout(()=>{alert.changeSuccessStatus("")},3500)
             }
 
         }

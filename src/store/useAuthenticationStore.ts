@@ -7,12 +7,12 @@ import router from "../router";
 export const authenticationStore = defineStore('authenticationStore',{
     state:()=>({
         user:{} as UserMetaData,
-        user_id:"" as string
+        currentUser_Id: "" as string,
     }),
 
     getters:{
        getUser: (state) => state.user,
-       get_user_id: (state) => state.user_id,
+       get_user_id: (state) => state.currentUser_Id,
     },
 
     actions:{
@@ -26,7 +26,7 @@ export const authenticationStore = defineStore('authenticationStore',{
             })
 
             if(data != null){
-                this.user_id = `${data.user?.id}`
+                this.currentUser_Id = `${data.user?.id}`
             }
 
             if(error){
@@ -82,6 +82,14 @@ export const authenticationStore = defineStore('authenticationStore',{
 
             if(session){
                 this.user = session.user.user_metadata
+            }
+        },
+
+        async get_current_user(){
+            const { data: { user } } = await supabase.auth.getUser();
+
+            if(user != null){
+                this.currentUser_Id = user.id
             }
         },
 
