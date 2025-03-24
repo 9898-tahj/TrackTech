@@ -277,7 +277,6 @@ export type Database = {
                     make: string
                     model: string
                     serial_number: string
-                    settings: Json
                     status: string
                     user_id: string
                     vehicle_id: string
@@ -293,7 +292,6 @@ export type Database = {
                     make: string
                     model: string
                     serial_number: string
-                    settings: Json
                     status: string
                     user_id?: string
                     vehicle_id?: string
@@ -309,7 +307,6 @@ export type Database = {
                     make?: string
                     model?: string
                     serial_number?: string
-                    settings?: Json
                     status?: string
                     user_id?: string
                     vehicle_id?: string
@@ -324,6 +321,35 @@ export type Database = {
                         isOneToOne: false
                         referencedRelation: "user_table"
                         referencedColumns: ["user_id"]
+                    },
+                ]
+            }
+            vehicle_settings: {
+                Row: {
+                    created_at: string
+                    settings: Json | null
+                    settings_id: string
+                    vehicle_id: string
+                }
+                Insert: {
+                    created_at?: string
+                    settings?: Json | null
+                    settings_id?: string
+                    vehicle_id: string
+                }
+                Update: {
+                    created_at?: string
+                    settings?: Json | null
+                    settings_id?: string
+                    vehicle_id?: string
+                }
+                Relationships: [
+                    {
+                        foreignKeyName: "vehicle_settings_vehicle_id_fkey"
+                        columns: ["vehicle_id"]
+                        isOneToOne: false
+                        referencedRelation: "vehicle"
+                        referencedColumns: ["vehicle_id"]
                     },
                 ]
             }

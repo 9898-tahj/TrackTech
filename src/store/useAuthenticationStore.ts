@@ -6,11 +6,13 @@ import router from "../router";
 
 export const authenticationStore = defineStore('authenticationStore',{
     state:()=>({
-        user:{} as UserMetaData
+        user:{} as UserMetaData,
+        user_id:"" as string
     }),
 
     getters:{
-       getUser: (state) => state.user
+       getUser: (state) => state.user,
+       get_user_id: (state) => state.user_id,
     },
 
     actions:{
@@ -18,10 +20,14 @@ export const authenticationStore = defineStore('authenticationStore',{
 
             const alert = useAlertStore()
 
-            const {error} = await supabase.auth.signInWithPassword({
+            const {data,error} = await supabase.auth.signInWithPassword({
                 email:`${email}`,
                 password:`${password}`
             })
+
+            if(data != null){
+                this.user_id = `${data.user?.id}`
+            }
 
             if(error){
                 alert.changeError(error.message)

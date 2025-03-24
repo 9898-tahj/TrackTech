@@ -10,7 +10,6 @@ let alertStore = useAlertStore()
 let error = computed<boolean>(()=>{return alertStore.getError})
 let message = computed<string>(()=>{return alertStore.getMessage})
 
-function closeModal(){ alertStore.changeError(""); }
 </script>
 
 <template>
@@ -25,7 +24,7 @@ function closeModal(){ alertStore.changeError(""); }
         :initial="modal_bg_movement.initial"
         :enter="modal_bg_movement.enter"
         :leave="modal_bg_movement.leave"
-        class="fixed inset-0 flex flex-col space-y-4 p-6 justify-center items-center overflow-hidden z-20"
+        class="fixed inset-0 flex flex-col space-y-4 p-6 justify-center items-center overflow-hidden z-40"
         :class="getDarkModeStatus() ? 'bg-innerDark/60':'bg-red-500/25'"
     >
       <section
@@ -62,14 +61,6 @@ function closeModal(){ alertStore.changeError(""); }
 
         <p class="font-semibold text-lg w-full text-center">{{ message }}</p>
 
-        <button
-            @click="closeModal()"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
-            <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z" clip-rule="evenodd" />
-          </svg>
-
-        </button>
       </section>
     </div>
 

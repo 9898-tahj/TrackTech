@@ -1,34 +1,23 @@
-import type { LngLatLike } from "maplibre-gl";
-import { jamaica_location } from "./constants";
 
-export interface LocationResponse {
-    status: string;
-    country: string;
-    countryCode: string;
-    region: string;
-    regionName: string;
-    city: string;
-    zip: string;
-    lat: number;
-    lon: number;
-    timezone: string;
-    isp: string;
-    org: string;
-    as: string;
-    query: string;
-}
+export async function getLocation(): Promise<{ lon: number; lat: number }>{
 
+    if (!navigator.geolocation) {
+        throw new Error("Geolocation is not supported by this browser.");
+    }
 
-export  async function getLocation() {
     try {
 
-        const response = await fetch("http://ip-api.com/json/");
-        const json = (await response.json() as LocationResponse);
+        const position = await new Promise<GeolocationPosition>((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject);
+        });
 
-        return [json.lon, json.lat] as LngLatLike;
+        return {
+            lat: position.coords.latitude,
+            lon: position.coords.longitude
+        };
 
-    } catch(error) {
-        //alert(error);
-        return jamaica_location;
+    } catch (error) {
+        throw new Error(`Geolocation error: ${error instanceof Error ? error.message : "Unknown error"}`);
     }
+
 }
