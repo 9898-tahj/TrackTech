@@ -8,6 +8,7 @@ import alertComponent from './components/alert.vue'
 import errorComponent from './components/error.vue'
 import successModal from "./components/successModal.vue";
 import addDeviceComponent from "./components/addDeviceComponent.vue";
+import CarDetails from "./components/VechileDetails.vue";
 
   const store = useShowNavBar()
   let showNavbar = computed<boolean>(() => {return store.getShowNavBar })
@@ -33,6 +34,7 @@ import addDeviceComponent from "./components/addDeviceComponent.vue";
     <errorComponent/>
     <successModal/>
     <addDeviceComponent/>
+    <CarDetails/>
   </section>
 </template>
 

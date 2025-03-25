@@ -21,13 +21,14 @@ export const useVehicleStore = defineStore("useVehicleStore",{
     },
 
     actions:{
-        async Fetch_All_Vehicles(_user_id:string){
+        async Fetch_All_Vehicles(user_id:string){
 
             const alert = useAlertStore()
 
             let {data,error} = await supabase.
-            from('vehicle').select("*")
-
+            from('vehicle')
+                .select("*")
+                .eq('user_id',user_id)
 
             if(data != null){
                this.Vehicles = data
