@@ -22,6 +22,14 @@ import {computed,onMounted} from "vue";
   let cars = computed(() => { return vehicleStore.get_all_vehicles })
 
   function closeModal(){ alertStore.changeVehcile_details()}
+
+   async  function edit(id:string){
+     await vehicleStore.fetch_vehicle_by_id(id);
+     alertStore.changeVehcile_details()
+     setTimeout(()=>{
+       alertStore.changeEditModalStatus()
+     }, 300)
+  }
 </script>
 
 <template>
@@ -135,6 +143,7 @@ import {computed,onMounted} from "vue";
                   <td class="text-center p-1 rounded-lg capitalize font-medium"> {{item.license_plate}} </td>
                   <td class="p-1 capitalize font-medium">
                     <button
+                        @click="edit(item.vehicle_id)"
                         class="p-1 rounded-md border-2 transition-all ease-in-out duration-700 cursor-pointer hover:scale-125"
                         :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700 text-700 hover:bg-indigo-500/10 hover:text-indigo-500 hover:border-indigo-500'
                         :'bg-white border-teal-300 hover:bg-indigo-500/10 hover:text-indigo-500 hover:border-indigo-500'"

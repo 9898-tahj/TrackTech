@@ -8,7 +8,7 @@ import {useMotions} from "@vueuse/motion";
 import type {Database} from "../Types/database.types.ts";
 
 const motions = useMotions()
-type _vehicle_insert = Database["public"]['Tables']['vehicle']['Insert']
+type _vehicle_insert = Database["public"]['Tables']['vehicle']['Row']
 
 let alertStore = useAlertStore()
 let store = useVehicleStore()
@@ -93,11 +93,14 @@ function save_vehicle(){
             </button>
           </div>
 
-          <form
-              class="grid lg:grid-cols-2 grid-cols-1 gap-2 w-full p-4 rounded-md"
+          <div
+              class="grid lg:grid-cols-2 grid-cols-1 lg:gap-2 gap-1 w-full lg:p-4 p-1 rounded-md"
               :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
           >
-                <div class="flex flex-col space-y-1 p-2 justify-items-start">
+                <div
+                    class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
+                    :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
+                >
 
                   <label
                       id="vehicle_type"
@@ -123,7 +126,7 @@ function save_vehicle(){
                 </div>
 
                 <div
-                    class="flex flex-col space-y-1 p-2 rounded-md"
+                    class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
                     :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
                 >
                   <label
@@ -142,8 +145,8 @@ function save_vehicle(){
                 </div>
 
                 <div
-                  class="flex flex-col space-y-1 p-2 rounded-md"
-                  :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
+                    class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
+                    :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
                 >
                   <label
                       id="serial_number"
@@ -162,7 +165,7 @@ function save_vehicle(){
                 </div>
 
                 <div
-                    class="flex flex-col space-y-1 p-2 rounded-md"
+                    class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
                     :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
                 >
                   <label>
@@ -179,7 +182,7 @@ function save_vehicle(){
                 </div>
 
                 <div
-                    class="flex flex-col space-y-1 p-2 rounded-md"
+                    class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
                     :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
                 >
                   <label>
@@ -196,8 +199,8 @@ function save_vehicle(){
                 </div>
 
                 <div
-                  class="flex flex-col space-y-1 p-2 rounded-md"
-                  :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
+                    class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
+                    :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
                  >
                     <label>
                       License Plate #
@@ -213,7 +216,7 @@ function save_vehicle(){
                  </div>
 
                 <div
-                    class="flex flex-col space-y-1 p-2 rounded-md"
+                    class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
                     :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
                 >
                   <label>
@@ -230,7 +233,7 @@ function save_vehicle(){
                 </div>
 
                 <div
-                    class="flex flex-col space-y-1 p-2 rounded-md"
+                    class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
                     :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
                 >
                   <label>
@@ -246,24 +249,24 @@ function save_vehicle(){
                   />
                 </div>
 
-               <div
-                class="flex flex-col space-y-1 p-2 rounded-md col-span-2"
-                :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
-              >
-                <label>
-                  GPS ID
-                </label>
-                <input
-                    v-model="values.gps_unit_id"
-                    class="p-2 rounded-md outline-none focus:outline-none border-2 border-dashed"
-                    :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700':'bg-white'"
-                    placeholder="Enter gps unit id number"
-                    type="text"
-                    required
-                />
-              </div>
+                <div
+                    class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md lg:col-span-2 col-span-1"
+                    :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
+                >
+                  <label>
+                    GPS ID
+                  </label>
+                  <input
+                      v-model="values.gps_unit_id"
+                      class="p-2 rounded-md outline-none focus:outline-none border-2 border-dashed"
+                      :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700':'bg-white'"
+                      placeholder="Enter gps unit id number"
+                      type="text"
+                      required
+                  />
+                </div>
 
-          </form>
+          </div>
 
          <div
             class="flex w-full p-4 rounded-md justify-center items-center"

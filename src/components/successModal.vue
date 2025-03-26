@@ -23,7 +23,7 @@ let message = computed<string>(()=>{return alertStore.getMessage})
         :initial="modal_bg_movement.initial"
         :enter="modal_bg_movement.enter"
         :leave="modal_bg_movement.leave"
-        class="fixed inset-0 flex flex-col space-y-4 p-6 justify-center items-center overflow-hidden z-40"
+        class="fixed inset-0 flex flex-col space-y-4 p-6 justify-center items-center overflow-hidden z-50"
         :class="getDarkModeStatus() ? 'bg-innerDark/60':'bg-green-500/25'"
     >
       <section
