@@ -28,7 +28,7 @@ import {computed,onMounted} from "vue";
      alertStore.changeVehcile_details()
      setTimeout(()=>{
        alertStore.changeEditModalStatus()
-     }, 300)
+     }, 575)
   }
 </script>
 

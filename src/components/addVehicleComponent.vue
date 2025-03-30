@@ -12,7 +12,7 @@ type _vehicle_insert = Database["public"]['Tables']['vehicle']['Row']
 
 let alertStore = useAlertStore()
 let store = useVehicleStore()
-let modalStatus = computed<boolean>(()=>{return alertStore.getAddDeviceModalStatus})
+let modalStatus = computed<boolean>(()=>{return alertStore.getVehicleModalStatus})
 
 let values = reactive<_vehicle_insert>({ vehicle_type:""} as _vehicle_insert)
 let v_types = [

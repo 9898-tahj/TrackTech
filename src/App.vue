@@ -7,9 +7,10 @@ import {getDarkModeStatus} from "./composables/themeComposable.ts"
 import alertComponent from './components/alert.vue'
 import errorComponent from './components/error.vue'
 import successModal from "./components/successModal.vue";
-import addDeviceComponent from "./components/addDeviceComponent.vue";
-import CarDetails from "./components/VechileDetails.vue";
+import VehicleComponent from "./components/addVehicleComponent.vue";
+import VehicleDetails from "./components/VechileDetails.vue";
 import editVehicle from "./components/editVehicle.vue";
+import DeviceModal from "./components/addDeviceModal.vue";
 
   const store = useShowNavBar()
   let showNavbar = computed<boolean>(() => {return store.getShowNavBar })
@@ -34,9 +35,13 @@ import editVehicle from "./components/editVehicle.vue";
     <alertComponent/>
     <errorComponent/>
     <successModal/>
-    <addDeviceComponent/>
-    <CarDetails/>
+
+    <VehicleComponent/>
+    <VehicleDetails/>
     <editVehicle/>
+
+    <DeviceModal/>
+
   </section>
 </template>
 

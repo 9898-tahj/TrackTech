@@ -49,7 +49,7 @@ export const modal_bg_movement = {
         }
     },
     leave:{
-        y:-200,
+        y:-100,
         opacity:0,
         transition:{
             type:'spring',

@@ -41,6 +41,10 @@ import type {Database} from "../Types/database.types.ts";
   function closeModal(){
     alertStore.changeEditModalStatus()
   }
+
+  function SaveChanges(){
+
+  }
 </script>
 
 <template>
@@ -179,7 +183,7 @@ import type {Database} from "../Types/database.types.ts";
             <label
                 id="vin"
             >
-              Serial #
+              Vin Number
             </label>
             <input
                 id="vin"
@@ -191,14 +195,33 @@ import type {Database} from "../Types/database.types.ts";
             />
           </div>
 
+          <div
+                class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
+                :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
+            >
+              <label
+                  id="color"
+              >
+               Colour
+              </label>
+              <input
+                  id="color"
+                  v-model="vehicle.color"
+                  class="p-2 rounded-md outline-none focus:outline-none border-2 border-dashed"
+                  :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700':'bg-white'"
+                  placeholder="Enter vehicle vin number"
+                  required
+              />
+            </div>
 
         </div>
 
-        <div
+         <div
             class="flex w-full p-4 rounded-md justify-center items-center"
             :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
         >
           <button
+              @click="SaveChanges()"
               class="border-2 py-2 px-4 w-full rounded-md flex justify-center items-center space-x-2 cursor-pointer
               transition-all ease-in-out duration-700 hover:-translate-y-2"
               :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700 text-teal-700 hover:bg-indigo-500/10 hover:border-indigo-500 hover:text-indigo-400 hover:shadow-3xl'
