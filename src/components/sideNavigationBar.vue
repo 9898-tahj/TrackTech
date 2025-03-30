@@ -15,7 +15,8 @@ let user = computed(()=>{ return auth.getUser })
 
 function signOut() {auth.Logout() }
 function changeTheme(){theme.changeTheme()}
-function openAddDeviceComponent(){ modal.changeAddDeviceModalStatus()}
+function openVehicleModal(){ modal.changeAddVehicleModalStatus()}
+function openDeviceModal(){ modal.changeDeviceModalStatus() }
 </script>
 
 <template>
@@ -58,7 +59,7 @@ function openAddDeviceComponent(){ modal.changeAddDeviceModalStatus()}
       </router-link>
 
       <button
-          @click="openAddDeviceComponent()"
+          @click="openVehicleModal()"
           class="flex justify-center items-center cursor-pointer space-x-2 border-2 rounded-md w-full p-1 font-medium transition-all ease-in-out duration-700 hover:-translate-y-2"
           :class="getDarkModeStatus() ? 'bg-innerDark border-teal-950 text-teal-600 hover:bg-indigo-500/10 hover:border-indigo-500 hover:text-indigo-400 hover:shadow-3xl'
           : 'bg-gray-100 hover:bg-green-500/10 hover:border-green-500 hover:text-green-500 hover:shadow-4xl'"
@@ -67,6 +68,18 @@ function openAddDeviceComponent(){ modal.changeAddDeviceModalStatus()}
           <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z" clip-rule="evenodd" />
         </svg>
         <text>Add Vehicle</text>
+      </button>
+
+      <button
+          @click="openDeviceModal()"
+          class="flex justify-center items-center cursor-pointer space-x-2 border-2 rounded-md w-full p-1 font-medium transition-all ease-in-out duration-700 hover:-translate-y-2"
+          :class="getDarkModeStatus() ? 'bg-innerDark border-teal-950 text-teal-600 hover:bg-indigo-500/10 hover:border-indigo-500 hover:text-indigo-400 hover:shadow-3xl'
+          : 'bg-gray-100 hover:bg-green-500/10 hover:border-green-500 hover:text-green-500 hover:shadow-4xl'"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+          <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z" clip-rule="evenodd" />
+        </svg>
+        <text>Add Device</text>
       </button>
 
       <button

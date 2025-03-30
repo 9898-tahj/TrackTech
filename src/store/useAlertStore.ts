@@ -5,7 +5,8 @@ export const useAlertStore = defineStore("useAlertStore",{
     state:()=>({
         alertStatus: false as boolean,
         errorStatus: false as boolean,
-        addDeviceModalStatus:false as boolean,
+        addVehicleModalStatus:false as boolean,
+        DeviceModalStatus:false as boolean,
         vehcile_details:false as boolean,
         successStatus: false as boolean,
         editModalStatus:false as boolean,
@@ -17,7 +18,7 @@ export const useAlertStore = defineStore("useAlertStore",{
         getAlert:(state) => state.alertStatus,
         getError:(state) => state.errorStatus,
         getMessage:(state) => state.message,
-        getAddDeviceModalStatus: (state) => state.addDeviceModalStatus,
+        getAddDeviceModalStatus: (state) => state.addVehicleModalStatus,
         getCarsModalStatus: (state) => state.vehcile_details,
         getEditModalStatus: (state) => state.editModalStatus
     },
@@ -35,8 +36,11 @@ export const useAlertStore = defineStore("useAlertStore",{
             this.errorStatus = !this.errorStatus
             this.message = message
         },
-        changeAddDeviceModalStatus(){
-            this.addDeviceModalStatus = !this.addDeviceModalStatus;
+        changeAddVehicleModalStatus(){
+            this.addVehicleModalStatus = !this.addVehicleModalStatus;
+        },
+        changeDeviceModalStatus(){
+          this.DeviceModalStatus = !this.DeviceModalStatus;
         },
         changeVehcile_details(){
             this.vehcile_details = !this.vehcile_details

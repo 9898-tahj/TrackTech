@@ -37,7 +37,7 @@ let v_types = [
     "commercial vehicle"
 ]
 
-function closeModal(){ alertStore.changeAddDeviceModalStatus()  }
+function closeModal(){ alertStore.changeAddVehicleModalStatus()  }
 
 function save_vehicle(){
   if(
