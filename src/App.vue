@@ -18,11 +18,14 @@ import DeviceModal from "./components/addDeviceModal.vue";
 
 <template>
   <section
-      class="flex space-x-2 px-1 w-full font-poppins transition-all ease-in-out duration-700 lg:overflow-hidden"
+      class="flex lg:flex-row flex-col space-x-0 space-y-2 lg:space-y-0 lg:space-x-2 px-1 w-full font-poppins transition-all ease-in-out duration-700 lg:overflow-hidden"
       :class="getDarkModeStatus() ? 'bg-innerDark' : 'bg-gray-200 text-teal-900'"
   >
-    <div v-if="showNavbar" class="py-2">
+    <div v-if="showNavbar" class="lg:flex hidden py-2">
       <SideNavigation/>
+    </div>
+
+    <div v-if="showNavbar" class="lg:hidden flex py-2">
     </div>
 
     <router-view v-slot="{ Component }">

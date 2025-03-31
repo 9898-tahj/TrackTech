@@ -4,7 +4,7 @@ import {modal_bg_movement,StaggerEffect} from '../animations/anime.ts'
 import {getDarkModeStatus} from "../composables/themeComposable.ts";
 import {useAlertStore} from '../store/useAlertStore.ts'
 import {useVehicleStore} from '../store/useVehicleStore.ts'
-import {computed} from "vue";
+import {computed,} from "vue";
 import type {Database} from "../Types/database.types.ts";
 
   type _vehicle_ = Database["public"]['Tables']['vehicle']['Row']
@@ -15,6 +15,7 @@ import type {Database} from "../Types/database.types.ts";
 
   let modalStatus = computed<boolean>(()=>{return alertStore.getEditModalStatus})
   let vehicle = computed<_vehicle_>(()=>{ return vehicleStore.get_vehicle})
+
 
   let v_types = [
     "hatchback",
@@ -43,7 +44,14 @@ import type {Database} from "../Types/database.types.ts";
   }
 
   function SaveChanges(){
-
+      if(
+          Object.keys(vehicle.value).length === 1
+      ){
+        alertStore.changeAlert("Please ensure that updated vehicle information present.")
+        setTimeout(()=>{alertStore.changeAlert("")}, 5000)
+      }else{
+            vehicleStore.edit_vehicle_by_id(vehicle.value)
+      }
   }
 </script>
 
@@ -88,125 +96,106 @@ import type {Database} from "../Types/database.types.ts";
           </div>
 
           <div
-            class="flex lg:flex-row flex-col w-full lg:p-4 p-1 rounded-md"
+            class=" grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 rounded-md"
             :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
-        >
-          <div
-              class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
-              :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
           >
-
-            <label
-                id="vehicle_type"
+            <div
+                class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
+                :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
             >
-              Vehicle Type
-            </label>
 
-            <select
-                id="vehicle_type"
-                v-model="vehicle.vehicle_type"
-                class="p-2 rounded-md outline-none focus:outline-none border-2 border-dashed"
-                :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700':'bg-white'"
-                required
-            >
-              <option value="" selected>Please select an option.</option>
-              <option
-                  v-for="item in v_types"
-                  :key="item"
-                  :value="item"
-                  class="uppercase"
-              >{{item}}</option>
-            </select>
-          </div>
+              <label
+                  id="vehicle_type"
+              >
+                Vehicle Type
+              </label>
 
-          <div
-              class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
-              :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
-          >
-            <label
-                id="vehicle_make"
-            >
-              Vehicle Make
-            </label>
-            <input
-                id="vehicle_make"
-                v-model="vehicle.make"
-                class="p-2 rounded-md outline-none focus:outline-none border-2 border-dashed"
-                :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700':'bg-white'"
-                placeholder="Enter vehicle make"
-                required
-            />
-          </div>
+              <select
+                  id="vehicle_type"
+                  v-model="vehicle.vehicle_type"
+                  class="p-2 rounded-md outline-none focus:outline-none border-2 border-dashed"
+                  :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700':'bg-white'"
+                  required
+              >
+                <option value="" selected>Please select an option.</option>
+                <option
+                    v-for="item in v_types"
+                    :key="item"
+                    :value="item"
+                    class="uppercase"
+                >{{item}}</option>
+              </select>
+            </div>
 
-          <div
-              class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
-              :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
-          >
-            <label
-                id="vehicle_model"
-            >
-              Vehicle Model
-            </label>
-            <input
-                id="vehicle_model"
-                v-model="vehicle.model"
-                class="p-2 rounded-md outline-none focus:outline-none border-2 border-dashed"
-                :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700':'bg-white'"
-                placeholder="Enter vehicle model"
-                required
-            />
-          </div>
-
-          <div
-              class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
-              :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
-          >
-            <label
-                id="serial_number"
-            >
-              Serial #
-            </label>
-            <input
-                id="serial_number"
-                v-model="vehicle.serial_number"
-                class="p-2 rounded-md outline-none focus:outline-none border-2 border-dashed"
-                :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700':'bg-white'"
-                placeholder="Enter vehicle serial number"
-                required
-            />
-          </div>
-
-          <div
-              class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
-              :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
-          >
-            <label
-                id="vin"
-            >
-              Vin Number
-            </label>
-            <input
-                id="vin"
-                v-model="vehicle.vin"
-                class="p-2 rounded-md outline-none focus:outline-none border-2 border-dashed"
-                :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700':'bg-white'"
-                placeholder="Enter vehicle vin number"
-                required
-            />
-          </div>
-
-          <div
+            <div
                 class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
                 :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
             >
               <label
-                  id="color"
+                  id="vehicle_make"
               >
-               Colour
+                Vehicle Make
               </label>
               <input
-                  id="color"
-                  v-model="vehicle.color"
+                  id="vehicle_make"
+                  v-model="vehicle.make"
+                  class="p-2 rounded-md outline-none focus:outline-none border-2 border-dashed"
+                  :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700':'bg-white'"
+                  placeholder="Enter vehicle make"
+                  required
+              />
+            </div>
+
+            <div
+                class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
+                :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
+            >
+              <label
+                  id="vehicle_model"
+              >
+                Vehicle Model
+              </label>
+              <input
+                  id="vehicle_model"
+                  v-model="vehicle.model"
+                  class="p-2 rounded-md outline-none focus:outline-none border-2 border-dashed"
+                  :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700':'bg-white'"
+                  placeholder="Enter vehicle model"
+                  required
+              />
+            </div>
+
+            <div
+                class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
+                :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
+            >
+              <label
+                  id="serial_number"
+              >
+                Serial #
+              </label>
+              <input
+                  id="serial_number"
+                  v-model="vehicle.serial_number"
+                  class="p-2 rounded-md outline-none focus:outline-none border-2 border-dashed"
+                  :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700':'bg-white'"
+                  placeholder="Enter vehicle serial number"
+                  required
+              />
+            </div>
+
+            <div
+                class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
+                :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
+            >
+              <label
+                  id="vin"
+              >
+                Vin Number
+              </label>
+              <input
+                  id="vin"
+                  v-model="vehicle.vin"
                   class="p-2 rounded-md outline-none focus:outline-none border-2 border-dashed"
                   :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700':'bg-white'"
                   placeholder="Enter vehicle vin number"
@@ -214,7 +203,45 @@ import type {Database} from "../Types/database.types.ts";
               />
             </div>
 
-        </div>
+            <div
+                  class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
+                  :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
+              >
+                <label
+                    id="color"
+                >
+                 Colour
+                </label>
+                <input
+                    id="color"
+                    v-model="vehicle.color"
+                    class="p-2 rounded-md outline-none focus:outline-none border-2 border-dashed"
+                    :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700':'bg-white'"
+                    placeholder="Enter vehicle vin number"
+                    required
+                />
+              </div>
+
+            <div
+                  class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md lg:col-span-2 col-span-1"
+                  :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
+              >
+                <label
+                    id="license_plate"
+                >
+                  License Plate #
+                </label>
+                <input
+                    id="license_plate"
+                    v-model="vehicle.license_plate"
+                    class="p-2 rounded-md outline-none focus:outline-none border-2 border-dashed"
+                    :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700':'bg-white'"
+                    placeholder="Enter vehicle vin number"
+                    required
+                />
+              </div>
+
+          </div>
 
          <div
             class="flex w-full p-4 rounded-md justify-center items-center"

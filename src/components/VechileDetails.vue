@@ -30,6 +30,10 @@ import {computed,onMounted} from "vue";
        alertStore.changeEditModalStatus()
      }, 575)
   }
+
+  function deleteVehicle(id:string,user_id:string){
+    vehicleStore.delete_vehicle(id,user_id)
+  }
 </script>
 
 <template>
@@ -157,6 +161,7 @@ import {computed,onMounted} from "vue";
                   </td>
                   <td class="p-1 capitalize font-medium">
                     <button
+                        @click="deleteVehicle(item.vehicle_id,item.user_id)"
                         class="p-1 rounded-md border-2 transition-all ease-in-out duration-700 cursor-pointer hover:scale-125"
                         :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700 text-700 hover:bg-red-500/10 hover:text-red-500 hover:border-red-500'
                         :'bg-white border-teal-300 hover:bg-red-500/10 hover:text-red-500 hover:border-red-500'"

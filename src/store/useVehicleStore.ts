@@ -56,6 +56,30 @@ export const useVehicleStore = defineStore("useVehicleStore",{
             }
         },
 
+        async edit_vehicle_by_id(info:_vehicle){
+
+            const alert = useAlertStore();
+
+            const {error} = await supabase.from('vehicle').update({
+                make: info.make,
+                model: info.model,
+                vin: info.vin,
+                serial_number: info.serial_number,
+                color: info.color,
+                license_plate: info.license_plate,
+            }).eq('vehicle_id', info.vehicle_id)
+
+            if(error){
+                alert.changeError(error.message)
+                setTimeout(()=>{alert.changeError("")},3500)
+            }else{
+                await  this.Fetch_All_Vehicles(info.user_id)
+                alert.changeSuccessStatus("Vehicle info update successfully.")
+                setTimeout(()=>{alert.changeSuccessStatus("")},5000)
+            }
+
+        },
+
         async add_vehicle(vehicle:_vehicle_insert){
 
             const alert = useAlertStore()
@@ -76,6 +100,22 @@ export const useVehicleStore = defineStore("useVehicleStore",{
                 setTimeout(()=>{alert.changeSuccessStatus("")},3500)
             }
 
+        },
+
+        async delete_vehicle(id:string,userId:string){
+
+            const alert = useAlertStore()
+
+            const request = await supabase.from('vehicle').delete().eq('vehicle_id', id)
+
+            if(request.status === 204){
+                await  this.Fetch_All_Vehicles(userId)
+                alert.changeSuccessStatus("Vehicle info deleted successfully.")
+                setTimeout(()=>{alert.changeSuccessStatus("")},5000)
+            }else{
+                alert.changeError(request.statusText)
+                setTimeout(()=>{alert.changeError("")},5000)
+            }
         }
     }
 })
