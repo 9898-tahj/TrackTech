@@ -67,7 +67,7 @@ import type {Database} from "../Types/database.types.ts";
         :enter="modal_bg_movement.enter"
         :leave="modal_bg_movement.leave"
         class="fixed inset-0 flex flex-col space-y-4 p-6 justify-center items-center overflow-hidden z-20"
-        :class="getDarkModeStatus() ? 'bg-innerDark/60':'bg-gray-400/90'"
+        :class="getDarkModeStatus() ? 'bg-innerDark/95':'bg-gray-400/90'"
     >
 
       <section

@@ -48,6 +48,7 @@ export const useVehicleStore = defineStore("useVehicleStore",{
 
             if(data != null){
                 this.vehicle = data[0];
+                alert.changeEditModalStatus()
             }
 
             if(error){

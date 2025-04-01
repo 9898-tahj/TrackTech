@@ -23,13 +23,7 @@ import {computed,onMounted} from "vue";
 
   function closeModal(){ alertStore.changeVehcile_details()}
 
-   async  function edit(id:string){
-     await vehicleStore.fetch_vehicle_by_id(id);
-     alertStore.changeVehcile_details()
-     setTimeout(()=>{
-       alertStore.changeEditModalStatus()
-     }, 575)
-  }
+  async function edit(id:string){ await vehicleStore.fetch_vehicle_by_id(id);}
 
   function deleteVehicle(id:string,user_id:string){
     vehicleStore.delete_vehicle(id,user_id)
