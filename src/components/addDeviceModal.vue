@@ -1,16 +1,37 @@
 <script setup lang="ts">
-import {computed} from "vue";
+import {computed, reactive} from "vue";
+import type {Database} from '../Types/database.types.ts'
 import {modal_bg_movement,StaggerEffect} from '../animations/anime.ts'
 import {getDarkModeStatus} from '../composables/themeComposable.ts'
 import {useAlertStore} from '../store/useAlertStore.ts'
 import {useMotions} from "@vueuse/motion";
+import {useDeviceStore} from '../store/useDeviceStore.ts'
 
+type Device = Database['public']['Tables']['devices']['Insert']
 const modalStore = useAlertStore()
 const motions = useMotions()
+const store = useDeviceStore()
 
+let device = reactive<Device>({} as Device)
 let modal_status = computed(()=>{ return modalStore.getAddDeviceModalStatus})
 
+let DeviceTyps= [
+  "Smart Phone",
+  "Ear Bubs",
+  "Tablet",
+  "Laptop"
+]
+
 function closeModal(){ modalStore.changeDeviceModalStatus() }
+
+function Save(){
+  if(JSON.stringify(device) === "{}"){
+    modalStore.changeAlert('Please ensure that all field are filled.');
+    setTimeout(()=>{ modalStore.changeAlert("") },3500)
+  }else{
+    store.insert_devices_(device)
+  }
+}
 </script>
 
 <template>
@@ -52,6 +73,61 @@ function closeModal(){ modalStore.changeDeviceModalStatus() }
 
           </button>
         </div>
+
+        <div
+         class="flex flex-col space-y-4 w-full p-4 rounded-md"
+         :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
+        >
+          <div
+           class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
+           :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
+          >
+            <label for="name">
+              <h2>Device Name</h2>
+            </label>
+            <input 
+              v-model="device.device_name"
+              class="p-2 rounded-md outline-none focus:outline-none border-2 border-dashed"
+              :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700':'bg-white'"
+              placeholder="Enter device name"
+              type="text"
+            >
+          </div>
+
+          <div
+           class="flex flex-col space-y-1 lg:p-2 p-1 rounded-md"
+           :class="getDarkModeStatus() ? 'bg-Dark':'bg-gray-100'"
+          >
+            <label
+              id="device_type"
+            >
+              Vehicle Type
+            </label>
+            <select
+              id="device_type"
+              v-model="device.devices_type"
+              class="p-2 rounded-md outline-none focus:outline-none border-2 border-dashed"
+              :class="getDarkModeStatus() ? 'bg-innerDark border-teal-700':'bg-white'"
+              required
+            >
+             <option value="" selected>Please select an option.</option>
+              <option
+                v-for="item in DeviceTyps"
+                :key="item"
+                :value="item"
+                class="uppercase"
+              >{{item}}</option>
+            </select>            
+          </div>
+        </div>
+
+        <button
+         @click="Save()"
+         class="flex w-full p-2 rounded-md justify-center items-center border-2 cursor-pointer"
+         :class="getDarkModeStatus() ? '':''"
+        >
+          <text>Save Device</text>
+        </button>
 
       </section>
     </div>

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
+    "gen-types":"npx supabase gen types typescript --project-id kytikzrzmsepussmamys --schema public",
     "preview": "vite preview"
   },
   "dependencies": {
