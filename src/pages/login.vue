@@ -27,11 +27,10 @@ const authStore = authenticationStore()
   <section class="w-full min-h-screen flex p-1 space-x-1 ">
 
     <div
-        v-motion="StaggerEffect(715,0,-100)"
-        class="flex-auto w-full border-2 rounded-2xl bg-cover bg-[url(https://images.unsplash.com/photo-1594935975218-a3596da034a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
-        :class="getDarkModeStatus() ? '':'border-teal-100' "
+      v-motion="StaggerEffect(715,0,-100)"
+      class="lg:flex lg:flex-auto hidden w-full border-2 rounded-2xl bg-cover bg-[url(https://images.unsplash.com/photo-1594935975218-a3596da034a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
+      :class="getDarkModeStatus() ? '':'border-teal-100' "
     >
-
     </div>
 
     <div

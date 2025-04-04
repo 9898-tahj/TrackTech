@@ -34,10 +34,9 @@ let rePassword = ref<string>('')
 
     <div
         v-motion="StaggerEffect(715,0,-100)"
-        class="flex-auto w-full border-2 rounded-2xl bg-cover bg-[url(https://images.unsplash.com/photo-1504999968522-8765b15c8aee?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
+        class="lg:flex lg:flex-auto hidden w-full border-2 rounded-2xl bg-cover bg-[url(https://images.unsplash.com/photo-1504999968522-8765b15c8aee?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
         :class=" getDarkModeStatus() ? '':'border-teal-100' "
     >
-
     </div>
 
     <div

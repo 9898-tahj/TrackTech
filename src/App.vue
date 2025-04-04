@@ -28,6 +28,7 @@ import Modal from "./components/deviceModal.vue"
     </div>
 
     <div v-if="showNavbar" class="lg:hidden flex py-2">
+      
     </div>
 
     <router-view v-slot="{ Component }">
